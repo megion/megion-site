@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+/* --- breadcrumbs-navigation --- */
+.breadcrumbs-navigation {margin-bottom: 14px;}
+.breadcrumbs-navigation .nav-current {color: #AAAAAA;}
+.breadcrumbs-navigation .nav-link {color: #0091AF;outline: medium none;}
+.breadcrumbs-navigation .nav-spacer {color: #0091AF; margin: 0 2px;}
+
+/* --- pagination --- */
+.pagination {border-collapse: collapse;clear: both;margin-top: 10px;padding: 20px 0; font-size: 15px;}
+.pagination-title {font-weight: bold; padding-right: 10px}
+.pagination a {color: #0096B0;padding: 6px;overflow: hidden;display: inline; cursor: pointer;line-height: 2em;}
+.pagination a.pagination-active {color: black; background-color: #E8E9EC}
+.pagination a.pagination-next {text-decoration: underline; padding-left: 10px}
+.pagination a.pagination-prev {text-decoration: underline; padding-right: 10px}
+.pagination a.pagination-hidden {color: #999999; text-decoration: none; cursor: default;}
+
+/* tag list */
+.tags-list .tag-name {color: #F08150; font-size: 11px;}
+.tags-list .tag-value {font-size: 11px;}

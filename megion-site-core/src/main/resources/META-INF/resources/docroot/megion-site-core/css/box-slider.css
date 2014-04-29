@@ -1,0 +1,86 @@
+.slide-box {
+	position: relative;
+	z-index: 1;
+}
+
+.slide-box .container {
+	overflow: hidden;
+	width: 100%
+}
+
+.slide-box .container .list {
+	left: 0;
+	/*position: absolute;*/
+	top: 0;
+	width: auto
+}
+
+.slide-box .arrows {
+	position: absolute;
+	width: 100%;
+	z-index: 2
+}
+
+.slide-box .arrows .prev,.slide-box .arrows .next {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none
+}
+
+.slide-box .arrows .prev {
+	left: -30px
+}
+
+.slide-box .arrows .next {
+	right: -30px
+}
+
+.slide-box .arrows .prev .triangle,.slide-box .arrows .next .triangle {
+	color: #0091AF;
+	cursor: pointer;
+	font-size: 5em;
+	position: relative
+}
+
+.slide-box .arrows .prev .disabled,.slide-box .arrows .next .disabled {
+	cursor: default;
+	color: #ccc
+}
+
+.narrowed {
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.slide-box div.container table.list .item div.item-container .popup-info {
+	width: 400px;
+	position: absolute;
+	display: none;
+}
+
+.slide-box div.container table.list .item {
+	text-align: center;
+}
+
+.slide-box div.container table.list .item div.item-container .popup-info div.info-text {
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	border-bottom: none;
+	color: #666666;
+	font-size: 12px;
+	text-decoration: none;
+	margin: 0;
+	padding: 10px;
+	text-align: left;
+}
+
+.slide-box div.container table.list .item div.item-container .popup-info div.sep {
+	height: 15px;
+	background: url("../img/box-slider/popup-info-bottom.png") no-repeat scroll center center
+		transparent;
+	margin: 0;
+	display: block;
+}

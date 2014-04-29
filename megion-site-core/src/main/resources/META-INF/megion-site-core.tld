@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+	<tlib-version>1.0</tlib-version>
+	<short-name>megioncore</short-name>
+	<uri>megion-site-core</uri>
+	<tag-file>
+		<description></description>
+		<name>breadcrumbs</name>
+		<path>/META-INF/tags/megion-site-core/breadcrumbs.tag</path>
+		<example></example>
+	</tag-file>
+	<tag-file>
+		<description></description>
+		<name>pagination</name>
+		<path>/META-INF/tags/megion-site-core/pagination.tag</path>
+		<example></example>
+	</tag-file>
+	<tag-file>
+		<description></description>
+		<name>typeValues</name>
+		<path>/META-INF/tags/megion-site-core/typeValues.tag</path>
+		<example></example>
+	</tag-file>
+	<tag-file>
+		<description></description>
+		<name>pageTypeValues</name>
+		<path>/META-INF/tags/megion-site-core/pageTypeValues.tag</path>
+		<example></example>
+	</tag-file>
+</taglib>

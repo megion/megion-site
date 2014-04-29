@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.mainHorizontal { float:none; background-color: #ffffff; clear: both;}
+.mainVertical { float:none; background-color: #ffffff; clear: left;}
+.mainHorizontal .horizontalItem { float:left; width: 50%}
+
+.page-tags {margin: 20px 0 10px 0;}
+
+.tableArea-container {clear: both;}
+table.area-table {width: 100%;border: 0; background: none; padding: 0; margin: 0; border-collapse: collapse;order-spacing: 0;}
+table.area-table tr {background: none; border: none; padding: 0; margin: 0;}
+table.area-table tr td {background: none; border: none; padding: 0; margin: 0; text-align: left;vertical-align: top;}
+
+.columnArea-container {clear: both;}
+.columnArea-container .column-cells {float:left;}
+.columnArea-container .column-cells .columnCell {}
+
+table.clear-table, .clear-table table {border: 0; background: none; padding: 0; margin: 0; border-collapse: collapse;order-spacing: 0;}
+table.clear-table tr, .clear-table table tr {background: none; border: none; padding: 0; margin: 0;}
+table.clear-table tr td, .clear-table table tr td {background: none; border: none; padding: 0; margin: 0; text-align: left;vertical-align: top;}
+

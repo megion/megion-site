@@ -1,0 +1,16 @@
+
+/target
+/.settings
+/.project
+
+/*/target
+/*/*.iml
+/*/*.ipr
+/*/*.iws
+/*/*.log
+/*/.idea
+/*/.project
+/*/.classpath
+/*/.settings
+/*/.checkstyle
+

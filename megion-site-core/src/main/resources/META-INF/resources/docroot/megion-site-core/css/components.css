@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+/* --- Contact form --- */
+.errorMessage {margin: 10px 0; padding: 8px 6px; background-color: #ffafaf; border-color: #db5757;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
+.successMessage {margin: 10px 0; padding: 8px 6px;background-color: #AFDAFF; border-color: #57B7DB;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
+.contactForm input.textinput[type="text"] {width: 400px; margin-bottom:8px; padding: 2px; font-size: 13px; line-height: 1.16em;}
+.form-input-name {color: #666666;}
+.form-input-error {color: #BB0000;}
+.required-marker {color: #DD4B39; margin: 0 6px 0 2px;}
+.captcha-label {font-size: 16px;margin: 0 0 0.5em;}
+.captcha-content {content: " ";display: table; clear: both;}
+input.captcha-input {font-size: 2.4em;vertical-align: middle;width: 6em;}
+.captcha-element {height: 74px;line-height: 74px;float: left;}
+
+/* --- search --- */
+.fulltextSearchForm {margin-bottom: 14px; overflow: auto;}
+.fulltextSearchForm input.fulltextSearch-input {width: 600px; padding: 4px; line-height: 1.2em; margin: 0; }
+.fulltextSearchForm input[type="button"] {padding: 2px 6px;}
+.highlight {background: none repeat scroll 0 0 #FFCC00; color: black; border: 0 none;font-style: normal;margin: 0;padding: 0;width: auto;}
+.fulltextSearch-totalResultCount {color: #999999;font-size: 13px;line-height: 35px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+table.form-table {border: 0; background: none; padding: 0; margin: 0;}
+table.form-table tr {vertical-align: middle; background: none; border: none; padding: 0; margin: 0;}
+table.form-table td {vertical-align: middle; background: none; border: none; padding: 0; margin: 0;}
+
+/*--- Yandex Map ---*/
+.geoInformation {clear: both; overflow: auto;}
+.geoMap {}
+.geoMapOnRight {float: right;}
+.geoMapOnLeft {float: left;}
+.geoText {}
+.geoTextOnRight {float: right;}
+.geoTextOnLeft {float: left;}
+
