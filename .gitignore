@@ -1,7 +1,13 @@
-
 /target
-/.settings
+/.iml
+/.ipr
+/.iws
+/.log
+/.idea
 /.project
+/.classpath
+/.settings
+/.checkstyle
 
 /*/target
 /*/*.iml
