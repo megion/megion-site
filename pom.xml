@@ -9,8 +9,10 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<javaVersion>1.6</javaVersion>
-		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		
 		<magnoliaVersion>4.5.6</magnoliaVersion>
 		<blossomVersion>2.0.1</blossomVersion>
 		<stkVersion>2.0.6</stkVersion>
