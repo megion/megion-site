@@ -10,18 +10,20 @@ import org.springframework.validation.Validator;
 
 import com.megion.site.core.exception.MegionsiteException;
 import com.megion.site.core.model.ContactFormNotification;
-import com.megion.site.core.service.ContactFormService;
+import com.megion.site.core.model.yandex.cleanweb.CheckCaptcha;
+import com.megion.site.core.service.YandexCaptchaService;
 
 /**
  * Validating contact forms.
  */
 public class ContactFormValidator implements Validator {
 
-	private final ContactFormService contactFormService;
+	private final YandexCaptchaService yandexCaptchaService;
 	private final String yandexKey;
 
-	public ContactFormValidator(ContactFormService contactFormService, String yandexKey) {
-		this.contactFormService = contactFormService;
+	public ContactFormValidator(YandexCaptchaService yandexCaptchaService,
+			String yandexKey) {
+		this.yandexCaptchaService = yandexCaptchaService;
 		this.yandexKey = yandexKey;
 	}
 
@@ -44,20 +46,25 @@ public class ContactFormValidator implements Validator {
 
 		ContactFormNotification contactFormNotification = (ContactFormNotification) target;
 		if (StringUtils.isNotBlank(contactFormNotification.getEmail())) {
-			if(!isValidEmailAddress(contactFormNotification.getEmail())) {
+			if (!isValidEmailAddress(contactFormNotification.getEmail())) {
 				errors.rejectValue("email", "required", null,
 						"Неверный формат E-mail.");
 			}
 		}
 		try {
-			if (StringUtils.isNotBlank(contactFormNotification.getCaptchaText())) {
-				boolean isValidCaptcha = contactFormService
-						.checkCaptcha(contactFormNotification, yandexKey);
+			if (StringUtils
+					.isNotBlank(contactFormNotification.getCaptchaText())) {
+				CheckCaptcha checkCaptcha = new CheckCaptcha(
+						contactFormNotification.getCheckSpamId(),
+						contactFormNotification.getCaptchaKey(),
+						contactFormNotification.getCaptchaText());
+				boolean isValidCaptcha = yandexCaptchaService.checkCaptcha(
+						checkCaptcha, yandexKey);
 				if (!isValidCaptcha) {
 					errors.rejectValue("captchaText", "required", null,
 							"Вы неверно ввели символы. Попробуйте еще раз.");
 				}
-			}		
+			}
 		} catch (Exception e) {
 			throw new MegionsiteException(e.getMessage(), e);
 		}

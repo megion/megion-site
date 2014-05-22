@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.megion.site.core.enums.TabNumber;
 import com.megion.site.core.model.ContactForm;
 import com.megion.site.core.model.ContactFormNotification;
+import com.megion.site.core.model.yandex.cleanweb.CheckSpam;
 import com.megion.site.core.model.yandex.cleanweb.CheckSpamResult;
 import com.megion.site.core.model.yandex.cleanweb.GetCaptchaResult;
 import com.megion.site.core.service.ContactFormService;
+import com.megion.site.core.service.YandexCaptchaService;
 import com.megion.site.core.web.validator.ContactFormValidator;
 
 /**
@@ -40,6 +42,9 @@ public class ContactFormComponent {
 	@Autowired
 	private ContactFormService contactFormService;
 
+	@Autowired
+	private YandexCaptchaService yandexCaptchaService;
+
 	@RequestMapping("/contactForm")
 	public String handleRequest(ModelMap model,
 			@ModelAttribute ContactFormNotification contactFormNotification,
@@ -52,19 +57,23 @@ public class ContactFormComponent {
 			// проверить на спам. Данная проверка сейчас используется только для
 			// получения id проверки. В будущем можно избавить добросовестных
 			// пользователей от ввода Captcha.
-			CheckSpamResult checkSpamResult = contactFormService.checkSpam(
-					contactFormNotification, contactForm.getYandexKey(),
+			CheckSpam checkSpam = new CheckSpam(
+					contactFormNotification.getName(),
+					contactFormNotification.getMessageTitle(),
+					contactFormNotification.getMessage());
+			CheckSpamResult checkSpamResult = yandexCaptchaService.checkSpam(
+					checkSpam, contactForm.getYandexKey(),
 					request);
 			model.put("checkSpamResult", checkSpamResult);
 
 			// получить Captcha всегда в независимости от проверки выше
-			GetCaptchaResult captchaResult = contactFormService.getCaptcha(
+			GetCaptchaResult captchaResult = yandexCaptchaService.getCaptcha(
 					checkSpamResult, contactForm.getYandexKey());
 			model.put("getCaptchaResult", captchaResult);
 
 			if ("POST".equals(request.getMethod())) {
 				// проверяем ввод пользователем данных
-				new ContactFormValidator(contactFormService,
+				new ContactFormValidator(yandexCaptchaService,
 						contactForm.getYandexKey()).validate(
 						contactFormNotification, result);
 				if (result.hasErrors()) {
