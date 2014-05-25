@@ -1,17 +1,5 @@
 @CHARSET "UTF-8";
 
-/* --- Contact form --- */
-.errorMessage {margin: 10px 0; padding: 8px 6px; background-color: #ffafaf; border-color: #db5757;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
-.successMessage {margin: 10px 0; padding: 8px 6px;background-color: #AFDAFF; border-color: #57B7DB;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
-.contactForm input.textinput[type="text"] {width: 400px; margin-bottom:8px; padding: 2px; font-size: 13px; line-height: 1.16em;}
-.form-input-name {color: #666666;}
-.form-input-error {color: #BB0000;}
-.required-marker {color: #DD4B39; margin: 0 6px 0 2px;}
-.captcha-label {font-size: 16px;margin: 0 0 0.5em;}
-.captcha-content {content: " ";display: table; clear: both;}
-input.captcha-input {font-size: 2.4em;vertical-align: middle;width: 6em;}
-.captcha-element {height: 74px;line-height: 74px;float: left;}
-
 /* --- search --- */
 .fulltextSearchForm {margin-bottom: 14px; overflow: auto;}
 .fulltextSearchForm input.fulltextSearch-input {width: 600px; padding: 4px; line-height: 1.2em; margin: 0; }
