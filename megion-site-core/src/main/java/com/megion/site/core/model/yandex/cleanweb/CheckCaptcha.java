@@ -17,13 +17,6 @@ public class CheckCaptcha {
 	
 	private String captchaText;
 
-	public CheckCaptcha(String checkSpamId, String captchaKey,
-			String captchaText) {
-		this.checkSpamId = checkSpamId;
-		this.captchaKey = captchaKey;
-		this.captchaText = captchaText;
-	}
-
 	public String getCaptchaText() {
 		return captchaText;
 	}
