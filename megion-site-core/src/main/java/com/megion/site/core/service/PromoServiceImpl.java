@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.megion.site.core.model.Promo;
 import com.megion.site.core.model.TextPromo;
-import com.megion.site.core.util.DialogUtils;
 import com.megion.site.core.util.JcrNodeUtils;
 
 @Service
@@ -24,9 +23,10 @@ public class PromoServiceImpl implements PromoService {
 
 	@Autowired
 	private TemplatingService templatingService;
-
 	@Autowired
 	private TextTagsService textTagsService;
+	@Autowired
+	private DialogService dialogService;
 
 	@Override
 	public Promo getPromo(Node promoComponent) throws PathNotFoundException,
@@ -43,7 +43,7 @@ public class PromoServiceImpl implements PromoService {
 	public void addPromoDialogControls(TabBuilder tabBuilder) {
 		tabBuilder.addLink("promoLink", "Страница c описанием",
 				"Ссылка на страницу с описанием рекламы");
-		DialogUtils.addDamControl(tabBuilder, "promoImage",
+		dialogService.addDAM(tabBuilder, "promoImage",
 				"Картинка с рекламой", "");
 	}
 
@@ -130,7 +130,7 @@ public class PromoServiceImpl implements PromoService {
 				"Ссылка на страницу с описанием");
 		tabBuilder.addEdit("promoExternalUrl", "Внешняя ссылка",
 				"Внешняя ссылка имеет приоритет над внутренней");
-		DialogUtils.addFckEditor(tabBuilder, "promoText", "Текст баннера", "");
+		dialogService.addFckEditor(tabBuilder, "promoText", "Текст баннера", "");
 	}
 
 	@Override

@@ -80,18 +80,7 @@
 			return this.trigger("unmask");
 		},
 		maskedInput: function(_mask, options) {
-			var printObj = typeof JSON !== "undefined" ? JSON.stringify : function( obj ) {
-				var arr = [];
-				$.each( obj, function( key, val ) {
-				var next = key + ": ";
-				next += $.isPlainObject( val ) ? printObj( val ) : val;
-				arr.push( next );
-				});
-				return "{ " + arr.join( ", " ) + " }";
-				};
-			
 			var settings = $.extend( true, {completed: null}, defaultSettings, options);
-			console.warn(printObj(settings));
 		
 			var input,
 				defs,

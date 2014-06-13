@@ -30,7 +30,6 @@ import com.megion.site.core.enums.TabNumber;
 import com.megion.site.core.enums.TextPositionType;
 import com.megion.site.core.model.yandex.map.GeoMap;
 import com.megion.site.core.model.yandex.map.Placemark;
-import com.megion.site.core.util.DialogUtils;
 import com.megion.site.core.util.JcrNodeUtils;
 
 @Service
@@ -42,9 +41,10 @@ public class GeoMapServiceImpl implements GeoMapService {
 
 	@Autowired
 	private TemplatingService templatingService;
-
 	@Autowired
 	private DataTypeService dataTypeService;
+	@Autowired
+	private DialogService dialogService;
 
 	@Override
 	public void addGeoMapDialogControls(TabBuilder tabBuilder,
@@ -80,7 +80,8 @@ public class GeoMapServiceImpl implements GeoMapService {
 			}
 			tabBuilder.addRadio("textPositionType", "Расположение текста", typeOptions,
 					TextPositionType.RIGHT.getId());
-			DialogUtils.addFckEditor(tabBuilder, "mapText", "Текст описания", "");
+			
+			dialogService.addFckEditor(tabBuilder, "mapText", "Текст описания", "");
 			
 			templatingService.addNumberLongControl(tabBuilder, "textWidth",
 					"Ширина текста", "");
