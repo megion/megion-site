@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.megion.site.core.model.ImageOverlay;
+import com.megion.site.core.service.ImageOverlayService;
 
 /**
  * Компонент ImageOverlay
@@ -24,18 +28,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Template(title = "Image overlay", id = "megion-site:components/imageOverlay")
 @TemplateDescription("Image overlay")
 public class ImageOverlayComponent {
+	
+	@Autowired
+	private ImageOverlayService imageOverlayService;
 
 	@RequestMapping("/imageOverlay")
 	public String handleRequest(ModelMap model, HttpSession session,
 			HttpServletRequest request, Node node)
 			throws PathNotFoundException, RepositoryException,
 			ServletRequestBindingException, JAXBException {
-
+		ImageOverlay imgOverlay = imageOverlayService.getImageOverlay(node);
+		model.put("imgOverlay", imgOverlay);
+		
 		return "components/imageOverlay.jsp";
 	}
 
 	@TabFactory("Content")
 	public void contentTab(TabBuilder tab) throws RepositoryException {
+		imageOverlayService.addImageOverlayDialogControls(tab);
 	}
 
 }
