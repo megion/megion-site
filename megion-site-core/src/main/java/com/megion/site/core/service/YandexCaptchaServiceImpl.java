@@ -1,5 +1,6 @@
 package com.megion.site.core.service;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -23,9 +24,9 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import com.megion.site.core.model.yandex.cleanweb.CheckSpam;
 import com.megion.site.core.model.yandex.cleanweb.CheckCaptcha;
 import com.megion.site.core.model.yandex.cleanweb.CheckCaptchaResult;
+import com.megion.site.core.model.yandex.cleanweb.CheckSpam;
 import com.megion.site.core.model.yandex.cleanweb.CheckSpamResult;
 import com.megion.site.core.model.yandex.cleanweb.GetCaptchaResult;
 
@@ -36,13 +37,33 @@ public class YandexCaptchaServiceImpl implements YandexCaptchaService {
 			.getLogger(YandexCaptchaServiceImpl.class);
 
 	@SuppressWarnings("unchecked")
-	private <T> T unmarshalFromUrl(URL url, Class<T> clazz) throws IOException,
+	private <T> T unmarshalFromUrl(String urlStr, String urlParams, boolean isPost, Class<T> clazz) throws IOException,
 			JAXBException, XMLStreamException, SAXException,
 			ParserConfigurationException {
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
-		connection.setRequestProperty("Accept-Charset", "UTF-8");
-		connection.setUseCaches(false);
+		
+		HttpURLConnection connection;
+		if (isPost) {
+			URL url = new URL(urlStr);
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Length", "" + Integer.toString(urlParams.getBytes().length));
+			connection.setRequestProperty("Accept-Charset", "UTF-8");
+			connection.setUseCaches(false);
+			connection.setDoOutput(true);
+			connection.setDoInput(true);
+			
+			DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+			wr.writeBytes(urlParams);
+			wr.flush();
+			wr.close();
+		} else {
+			URL url = new URL(urlStr + "?" + urlParams);
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.setRequestProperty("Accept-Charset", "UTF-8");
+			connection.setUseCaches(false);
+		}
+		
 		InputStream input = null;
 		try {
 			input = connection.getInputStream();
@@ -102,9 +123,7 @@ public class YandexCaptchaServiceImpl implements YandexCaptchaService {
 				URLEncoder.encode(subjectPlain, charset),
 				URLEncoder.encode(bodyPlain, charset));
 
-		String fullUrl = url + "?" + query;
-		log.info("Send spam check information to yandex: " + fullUrl);
-		CheckSpamResult result = unmarshalFromUrl(new URL(fullUrl),
+		CheckSpamResult result = unmarshalFromUrl(url, query, true,
 				CheckSpamResult.class);
 		log.info("Result spam-check: " + result);
 
@@ -120,13 +139,14 @@ public class YandexCaptchaServiceImpl implements YandexCaptchaService {
 
 		String url = "http://cleanweb-api.yandex.ru/1.0/get-captcha";
 		String key = yandexKey;
-		String id = checkSpamResult.getId();
+		String id = "";
+		if (checkSpamResult!=null) {
+			id = checkSpamResult.getId();
+		}
 
 		String query = String.format("key=%s&id=%s", key, id);
 
-		String fullUrl = url + "?" + query;
-		log.info("Send get-captcha information to yandex: " + fullUrl);
-		GetCaptchaResult result = unmarshalFromUrl(new URL(fullUrl),
+		GetCaptchaResult result = unmarshalFromUrl(url, query, false,
 				GetCaptchaResult.class);
 		log.info("Result spam-check: " + result);
 
@@ -150,10 +170,8 @@ public class YandexCaptchaServiceImpl implements YandexCaptchaService {
 
 		String query = String.format("key=%s&id=%s&captcha=%s&value=%s", key,
 				id, captcha, value);
-
-		String fullUrl = url + "?" + query;
-		log.info("Send check-captcha information to yandex: " + fullUrl);
-		CheckCaptchaResult result = unmarshalFromUrl(new URL(fullUrl),
+		
+		CheckCaptchaResult result = unmarshalFromUrl(url, query, false,
 				CheckCaptchaResult.class);
 		log.info("Result check-captcha: " + result);
 
