@@ -6,18 +6,22 @@
 <%
 	String localUuid = "" + System.currentTimeMillis();
 %>
-<div>
 
-	<img class="overlay-min-img" src="${imgOverlay.minImage.link}" rel="#overlay-<%=localUuid%>" />
+<img class="overlay-min-img" src="${imgOverlay.minImage.link}"
+	id="overlay-min-<%=localUuid%>" rel="#overlay-<%=localUuid%>" />
 
-	<div class="apple_overlay black" id="overlay-<%=localUuid%>">
-		<img class="overlay-main-img" src="${imgOverlay.image.link}" />
+<div class="simple_overlay" id="overlay-<%=localUuid%>">
+	<img class="overlay-main-img" src="${imgOverlay.image.link}" />
 
-		<div class="details">
-			<h2>Berlin Gustavohouse</h2>
-			<p>The Gustavo House in Storkower Strasse. It was built in 1978
-				and reconstructed in 1998 by the Spanish artist Gustavo.</p>
-		</div>
+	<div class="details">
 	</div>
-
 </div>
+
+<script type="text/javascript">
+	var containerId = "#overlay-min-" + "<%=localUuid%>";
+	console.warn("test: " + containerId);
+	//var im = jQuery(containerId);
+	//console.warn("img: " + im);
+	jQuery(containerId).overlay();
+	//console.warn("img: " + im);
+</script>
