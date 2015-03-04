@@ -28,11 +28,11 @@
 	<distributionManagement>
 		<repository>
 			<id>magnolia.public.releases</id>
-			<url>http://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases</url>
+			<url>https://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>magnolia.public.snapshots</id>
-			<url>http://nexus.magnolia-cms.com/content/repositories/magnolia.public.snapshots</url>
+			<url>https://nexus.magnolia-cms.com/content/repositories/magnolia.public.snapshots</url>
 		</snapshotRepository>
 		<downloadUrl>http://sourceforge.net/projects/magnolia/files/</downloadUrl>
 	</distributionManagement>
@@ -40,7 +40,7 @@
 	<repositories>
 		<repository>
 			<id>magnolia.nexus.public</id>
-			<url>http://nexus.magnolia-cms.com/content/groups/public/</url>
+			<url>https://nexus.magnolia-cms.com/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
